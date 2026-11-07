@@ -45,3 +45,10 @@ G1. In my project, route model binding needs the route parameter name to match t
 G2. When I first clicked the Delete link, it opened the Book Information page instead of deleting the book because an HTML link only sends a GET request. My destroy route requires a DELETE request, so I needed to replace the link with a form using `@method('DELETE')`.
 
 G3. In my edit form, I used `old()` with a second argument so the existing book information would still appear when I opened the form. Without the second argument, the fields could become empty, while using only the second argument would not show the new input if validation failed.
+
+Lab 12
+H1. The error page showed a file inside the vendor folder because Laravel detected the error while handling my code. My actual mistake was in my `BookController.php`, where I accidentally used `withh()` instead of `with()`. I found the wrong line in the Exception Trace.
+
+H2. My `Log::info()` line helps me check which book was saved by showing its actual ID. Even next month, I can look at `laravel.log` to know which book was added, something the error page cannot tell me.
+
+H3. Using 403 is better when I want to completely prevent an action, like deleting the last book in a genre. Redirecting back with a message is better when the user can still continue using the page and just needs to know why the action was not completed.

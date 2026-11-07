@@ -71,8 +71,9 @@
                             <th scope="col" class="py-3">Author</th>
                             <th scope="col" class="py-3">Year</th>
                             <th scope="col" class="py-3">Genre</th>
+                            <th scope="col" class="py-3">Availability</th>
                             <th scope="col" class="py-3">Actions</th>
-                            <th scope="col" class="py-3">Actions</th>
+                            
 
                         </tr>
                     </thead>
@@ -131,9 +132,6 @@
 
                                          <button type="submit" class="btn btn-danger btn-sm">Delete</button>
                                     </form>
-
-
-
                                 </td>
                             </tr>
 

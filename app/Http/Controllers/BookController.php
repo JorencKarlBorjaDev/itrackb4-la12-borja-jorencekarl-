@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 use App\Models\Book;
 use App\Models\Genre;
+
 
 
 class BookController extends Controller
@@ -16,7 +18,6 @@ class BookController extends Controller
 
        $genres = Genre::all();
       
-       
        $query = Book::with('genre');
 
      if ($genreId !== null) {
@@ -50,8 +51,12 @@ class BookController extends Controller
         'is_available' => 'required|boolean',
     ]);
 
-     
-    Book::create($validated);
+
+        $book = Book::create($validated);
+
+    Log::info('Book saved', [
+        'id' => $book->id,
+    ]);
 
     return redirect()->route('books.index')
         ->with('success', 'Book added successfully!');
@@ -90,9 +95,12 @@ class BookController extends Controller
 
     public function destroy(Book $book)
     {
+        abort_if($book->genre->books()->count() === 1, 403);
+
          $book->delete();
 
-        return redirect()->route('books.index');
+        return redirect()->route('books.index')
+         ->with('success', 'Book deleted successfully!');
     }
 
     
